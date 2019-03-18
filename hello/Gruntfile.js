@@ -11,22 +11,26 @@ module.exports = function (grunt) {
                 dest: 'build/main.min.js'
             }
         },
-        cssmin : {
-            options : {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-            },
-            target : {
-              src: 'src/**/*.css'  ,
-              dest : 'build/style.min.css'
+        sass: {
+            target: {
+                src: '**/*.scss',
+                dest: '**/*.css'
             }
-        }        
+        },
+        cssmin: {
+            target: {
+                src: 'src/**/*.css',
+                dest: 'build/style.min.css'
+            }
+        }
     });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');    
 
 
-    grunt.registerTask('default', ['uglify','cssmin']);
+    grunt.registerTask('default', ['uglify', 'sass', 'cssmin']);
 
 }
